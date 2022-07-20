@@ -2,8 +2,6 @@ import { TaskInterface } from '../../core/TaskInterface'
 import { ValidadorInterface } from '../../core/ValidadorInterface'
 
 export class Validador implements ValidadorInterface {
-  private constructor() {}
-
   static create() {
     return new Validador()
   }

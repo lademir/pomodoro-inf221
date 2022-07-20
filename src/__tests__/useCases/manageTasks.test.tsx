@@ -1,5 +1,4 @@
 import { PomodoroInterface } from "../../core/PomodoroInterface";
-import { TaskInterface } from "../../core/TaskInterface";
 import { Pomodoro } from "../../domain/models/Pomodoro";
 import { Task } from "../../domain/models/Task";
 import { TaskWithNullFieldsException } from "../../domain/useCases/exceptions/TaskWithNullFieldsException";
