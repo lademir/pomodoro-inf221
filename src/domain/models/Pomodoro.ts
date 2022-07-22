@@ -68,6 +68,10 @@ export class Pomodoro implements PomodoroInterface {
     this.#state = 'finalizado'
   }
 
+  getTask(name: string) {
+    return this.#tarefas.find((task) => task.nome === name)
+  }
+
   get time() {
     return this.#time
   }

@@ -22,6 +22,8 @@ export interface PomodoroInterface {
     descricao: string
   ) => TaskWithNullFieldsException | TaskAlreadyExistentException | undefined
 
+  getTask: (nome: string) => TaskInterface | undefined
+
   iniciar: () => void
   pausar: () => void
   retomar: () => void

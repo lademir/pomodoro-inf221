@@ -10,4 +10,21 @@ export class ManageTask {
 
     pomodoro.adicionarTarefa(task.nome, task.descricao)
   }
+
+  changeTaskName(
+    newName: string,
+    task: TaskInterface,
+    pomodoro: PomodoroInterface
+  ) {
+    const validation = pomodoro.validarTarefa(newName, task.descricao)
+    if (validation) {
+      throw validation
+    }
+
+    task.changeName(newName)
+  }
+
+  changeTaskDescription(newDescription: string, task: TaskInterface) {
+    task.changeDescription(newDescription)
+  }
 }

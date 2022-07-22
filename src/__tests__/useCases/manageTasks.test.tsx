@@ -66,6 +66,46 @@ describe('ManageTaskUsecase', () => {
 
     // EDITAR
 
+    it('should update task name', () => {
+        const manageTask = new ManageTask();
+
+        const mockTask = Task.create(TASK_NAME, TASK_DESCRIPTION);
+        manageTask.add(mockTask, pomodoroSUT);
+
+        manageTask.changeTaskName("newName", mockTask, pomodoroSUT);
+
+        expect(() => pomodoroSUT.getTask("newName")).toBeTruthy();
+    });
+
+    it('should update task description', () => {
+        const manageTask = new ManageTask();
+
+        const mockTask = Task.create(TASK_NAME, TASK_DESCRIPTION);
+        manageTask.add(mockTask, pomodoroSUT);
+
+        expect(mockTask.descricao).toBe(TASK_DESCRIPTION);
+
+        const a = pomodoroSUT.getTask(TASK_NAME);
+        if (a) {
+            manageTask.changeTaskDescription("newDescription", a);
+        }
+
+        const changedDescriptionTask = pomodoroSUT.getTask(mockTask.nome);
+
+        expect(changedDescriptionTask).toBeTruthy();
+        expect(changedDescriptionTask?.descricao).toBe("newDescription");
+    });
+
+    it('should not update name to a null field', () => {
+        const manageTask = new ManageTask();
+
+        const mockTask = Task.create(TASK_NAME, TASK_DESCRIPTION);
+        manageTask.add(mockTask, pomodoroSUT);
+
+        expect(() => manageTask.changeTaskName("", mockTask, pomodoroSUT)).toThrowError(TaskWithNullFieldsException);
+
+    });
+
     // FINALIZAR
 
     // REMOVER
