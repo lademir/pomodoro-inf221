@@ -1,6 +1,7 @@
 import { PomodoroInterface } from "../../core/PomodoroInterface";
 import { Pomodoro } from "../../domain/models/Pomodoro";
 import { Task } from "../../domain/models/Task";
+import { TaskAlreadyExistentException } from "../../domain/useCases/exceptions/TaskAlreadyExistentException";
 import { TaskWithNullFieldsException } from "../../domain/useCases/exceptions/TaskWithNullFieldsException";
 import { ManageTask } from "../../domain/useCases/manageTask";
 
@@ -48,6 +49,19 @@ describe('ManageTaskUsecase', () => {
 
         const mockTaskNullDescription = Task.create("", "");
         expect(() => manageTask.add(mockTaskNullDescription, pomodoroSUT)).toThrowError(TaskWithNullFieldsException);
+    });
+
+    it('should not add repeated tasks', () => {
+        const manageTask = new ManageTask();
+
+        expect(pomodoroSUT.tarefas.length).toBe(0);
+
+        const mockTask = Task.create(TASK_NAME, TASK_DESCRIPTION);
+        manageTask.add(mockTask, pomodoroSUT);
+
+        expect(pomodoroSUT.tarefas.length).toBe(1);
+
+        expect(() => manageTask.add(mockTask, pomodoroSUT)).toThrowError(TaskAlreadyExistentException);
     });
 
     // EDITAR

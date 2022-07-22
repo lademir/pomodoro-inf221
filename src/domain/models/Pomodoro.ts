@@ -1,6 +1,8 @@
 import { PomodoroInterface } from '../../core/PomodoroInterface'
 import { TaskInterface } from '../../core/TaskInterface'
 import { ValidadorInterface } from '../../core/ValidadorInterface'
+import { TaskAlreadyExistentException } from '../useCases/exceptions/TaskAlreadyExistentException'
+import { TaskWithNullFieldsException } from '../useCases/exceptions/TaskWithNullFieldsException'
 import { Task } from './Task'
 import { Validador } from './Validador'
 
@@ -46,13 +48,11 @@ export class Pomodoro implements PomodoroInterface {
     )
 
     if (camposNaoNulos) {
-      return false
+      return new TaskWithNullFieldsException()
     }
     if (tarefaJaExistente) {
-      return false
+      return new TaskAlreadyExistentException()
     }
-
-    return true
   }
 
   iniciar() {
