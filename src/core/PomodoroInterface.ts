@@ -17,10 +17,13 @@ export interface PomodoroInterface {
     novaDescricao: string,
     task: TaskInterface
   ) => void
-  validarTarefa: (
+  removeTask: (nome: string) => void
+
+  validarCampos: (
     nome: string,
     descricao: string
-  ) => TaskWithNullFieldsException | TaskAlreadyExistentException | undefined
+  ) => TaskWithNullFieldsException | undefined
+  validarExistencia: (nome: string) => TaskAlreadyExistentException | undefined
 
   getTask: (nome: string) => TaskInterface | undefined
 

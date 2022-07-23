@@ -40,16 +40,24 @@ export class Pomodoro implements PomodoroInterface {
     task.changeDescription(novaDescricao)
   }
 
-  validarTarefa(nome: string, descricao: string) {
+  removeTask(nome: string) {
+    const newArr = this.#tarefas.filter((task) => task.nome !== nome)
+    this.#tarefas = newArr
+  }
+
+  validarCampos(nome: string, descricao: string) {
     const camposNaoNulos = this.#validador.valCamposNaoNulos(nome, descricao)
-    const tarefaJaExistente = this.#validador.valTarefaJaExistente(
-      nome,
-      this.#tarefas
-    )
 
     if (camposNaoNulos) {
       return new TaskWithNullFieldsException()
     }
+  }
+
+  validarExistencia(nome: string) {
+    const tarefaJaExistente = this.#validador.valTarefaJaExistente(
+      nome,
+      this.#tarefas
+    )
     if (tarefaJaExistente) {
       return new TaskAlreadyExistentException()
     }

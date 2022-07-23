@@ -3,6 +3,7 @@ import { Pomodoro } from "../../domain/models/Pomodoro";
 import { Task } from "../../domain/models/Task";
 import { TaskAlreadyExistentException } from "../../domain/useCases/exceptions/TaskAlreadyExistentException";
 import { TaskWithNullFieldsException } from "../../domain/useCases/exceptions/TaskWithNullFieldsException";
+import { UnexistentTaskException } from "../../domain/useCases/exceptions/UnexistentTaskException";
 import { ManageTask } from "../../domain/useCases/manageTask";
 
 // adicionar, remover, editar e finalizar tarefa
@@ -87,7 +88,7 @@ describe('ManageTaskUsecase', () => {
 
         const a = pomodoroSUT.getTask(TASK_NAME);
         if (a) {
-            manageTask.changeTaskDescription("newDescription", a);
+            manageTask.changeTaskDescription("newDescription", a, pomodoroSUT);
         }
 
         const changedDescriptionTask = pomodoroSUT.getTask(mockTask.nome);
@@ -96,7 +97,7 @@ describe('ManageTaskUsecase', () => {
         expect(changedDescriptionTask?.descricao).toBe("newDescription");
     });
 
-    it('should not update name to a null field', () => {
+    it('should not update name to a null value', () => {
         const manageTask = new ManageTask();
 
         const mockTask = Task.create(TASK_NAME, TASK_DESCRIPTION);
@@ -106,7 +107,47 @@ describe('ManageTaskUsecase', () => {
 
     });
 
+    it('should not update description to a null value', () => {
+        const manageTask = new ManageTask();
+
+        const mockTask = Task.create(TASK_NAME, TASK_DESCRIPTION);
+        manageTask.add(mockTask, pomodoroSUT);
+
+        expect(() => manageTask.changeTaskDescription("", mockTask, pomodoroSUT)).toThrowError(TaskWithNullFieldsException);
+
+    });
+
     // FINALIZAR
 
+    it('should change task status to finished', () => {
+        const manageTask = new ManageTask();
+
+        const mockTask = Task.create(TASK_NAME, TASK_DESCRIPTION);
+        manageTask.add(mockTask, pomodoroSUT);
+
+        manageTask.finish(mockTask);
+
+        expect(mockTask.finalizada).toBeTruthy();
+
+    });
+
     // REMOVER
+
+    it('should remove task', () => {
+        const manageTask = new ManageTask();
+
+        const mockTask = Task.create(TASK_NAME, TASK_DESCRIPTION);
+        manageTask.add(mockTask, pomodoroSUT);
+
+        expect(pomodoroSUT.tarefas.length).toBe(1);
+
+        manageTask.remove(mockTask.nome, pomodoroSUT);
+
+        expect(pomodoroSUT.tarefas.length).toBe(0);
+    });
+
+    it('should throw error when remove unexistent task', () => {
+        const manageTask = new ManageTask();
+        expect(() => manageTask.remove("unexistend", pomodoroSUT)).toThrowError(UnexistentTaskException);
+    });
 });
