@@ -99,4 +99,8 @@ export class Pomodoro implements PomodoroInterface {
   get validador() {
     return this.#validador
   }
+
+  get state() {
+    return this.#state
+  }
 }

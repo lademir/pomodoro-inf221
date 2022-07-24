@@ -10,6 +10,7 @@ export interface PomodoroInterface {
   longBreak: number
   tarefas: TaskInterface[]
   validador: ValidadorInterface
+  state: 'naoIniciado' | 'emAndamento' | 'pausado' | 'finalizado'
 
   adicionarTarefa: (nome: string, descricao: string) => void
   editarTarefa: (
