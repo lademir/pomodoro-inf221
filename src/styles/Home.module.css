@@ -1,0 +1,246 @@
+.container {
+    padding: 1rem 2rem;
+    background-color: #376996;
+  }
+  
+  .header {
+    border-bottom: 2px solid #274a68;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .main {
+    min-height: 100vh;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem 20rem;
+  }
+  
+  .counter {
+    background-color: #88b0d3;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    padding: 1rem 8rem;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .counterButton {
+    padding: 0.5rem 1rem;
+    border: 0px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+    font-weight: 600;
+    background-color: #88b0d3;
+    cursor: pointer;
+  }
+  
+  .counterButtonActive {
+    padding: 0.5rem 1rem;
+    border: 0px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+    font-weight: 600;
+    background-color: #274a68;
+    cursor: pointer;
+  }
+  
+  .number {
+    padding: 1rem;
+    font-size: 120px;
+    font-weight: 700;
+  }
+  
+  .start {
+    padding: 0.5rem 2rem;
+    border: 0px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+    font-weight: 600;
+    background-color: #fff;
+    color: #376996;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  
+  .tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .title {
+    font-weight: 600;
+  }
+  
+  .headerTasks {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 1rem;
+  }
+  
+  .headerTasksTitle {
+    font-weight: 600;
+    font-size: 24px;
+  }
+  
+  .task {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-color: #d9d9d9;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    border-left: 10px solid #274a68;
+  }
+  
+  .taskName {
+    color: #202020;
+    font-weight: 600;
+    font-size: 18px;
+    margin-left: 1rem;
+  }
+  
+  .taskDescription {
+    color: #202020;
+    margin-left: 1rem;
+  }
+  
+  .taskInfo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .taskCollapsed {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .taskExpanded {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  .taskExpanded label {
+    color: #202020;
+    margin-bottom: 0.5rem;
+  }
+  
+  .taskExpanded input,
+  .taskExpanded textarea {
+    background-color: #d9d9d9;
+    color: #202020;
+    border: 1px solid #202020;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 12px;
+    margin-bottom: 1rem;
+    padding: 5px;
+  }
+  
+  .trashImage {
+    height: 20px;
+  }
+  
+  .trashButton {
+    cursor: pointer;
+    background-color: transparent;
+    border: 0px;
+  }
+  
+  .addTask {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    border-style: dotted;
+    border-width: 2px;
+    border-color: #fff;
+    cursor: pointer;
+  }
+  
+  .addTaskDescription {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 1rem;
+  }
+  
+  .cancelButton {
+    color: #8b8b8b;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+    border: 0px;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  
+  .confirmButton {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #274A68;
+    border: 0px;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  .containerButtons{
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .spentTime {
+    display: flex;
+    justify-content: center;
+    background-color: #477ba8;
+    margin-top: 1rem;
+    border-top: #fff 2px solid;
+    padding: 1rem;
+  }
+  
+  .spentTimeText {
+    color: #fff;
+    font-size: 20px;
+  }
+  
+  .footer {
+    display: flex;
+    flex: 1;
+    padding: 1rem 0;
+    border-top: 1px solid #eaeaea;
+    justify-content: center;
+    align-items: center;
+    background-color: #376996;
+    font-weight: 600;
+  }
+  
