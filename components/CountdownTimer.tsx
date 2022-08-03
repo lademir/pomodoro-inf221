@@ -1,6 +1,20 @@
 import React from 'react';
-import DateTimeDisplay from './DateTimeDisplay';
 import { useCountdown } from '../hooks/useCountdown';
+
+
+interface timer {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+interface CountdownTimerProps {
+  targetDate: number;
+  start: boolean;
+  pomodoroStopedTime: number;
+}
+
 
 const ExpiredNotice = () => {
   return (
@@ -10,7 +24,7 @@ const ExpiredNotice = () => {
   );
 };
 
-const ShowCounter = ({ days, hours, minutes, seconds }) => {
+const ShowCounter = ({ minutes, seconds }: timer) => {
   return (
     <div className="show-counter">
       {minutes}
@@ -20,7 +34,7 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
   );
 };
 
-const CountdownTimer = ({ start, targetDate, pomodoroStopedTime }) => {
+const CountdownTimer = ({ start, targetDate, pomodoroStopedTime }: CountdownTimerProps) => {
   const [days, hours, minutes, seconds] = useCountdown(targetDate);
 
   if (days + hours + minutes + seconds <= 0) {

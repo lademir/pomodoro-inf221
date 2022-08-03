@@ -1,7 +1,7 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from 'next';
+import Head from 'next/head';
 import { useState } from 'react';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 import CountdownTimer from '../../components/CountdownTimer';
 
 const Home: NextPage = () => {
@@ -49,18 +49,20 @@ const Home: NextPage = () => {
       setPomodoroStopedTime(15);
       setStart(false);
     }
-  }
+  };
+
+  console.log("renderizou");
 
   const manageTask = (index: number) => {
-    var auxTasks = [...tasks];
+    const auxTasks = [...tasks];
     auxTasks.forEach((auxTask, auxIndex) => {
       if (auxIndex != index) {
         auxTask.selecionada = false;
       }
-    })
+    });
     auxTasks[index].selecionada = !auxTasks[index].selecionada;
     setTasks(auxTasks);
-  }
+  };
 
   const addTask = () => {
     if (newTaskName.length == 0) {
@@ -70,14 +72,14 @@ const Home: NextPage = () => {
       alert('A descrição da tarefa não pode estar vazia');
       return;
     } else {
-      let taskExists = tasks.find((task) => task.nome == newTaskName);
+      const taskExists = tasks.find((task) => task.nome == newTaskName);
       if (taskExists != undefined) {
         alert('Este nome já se encontra em uso');
         return;
       }
     }
 
-    let auxTasks = [...tasks];
+    const auxTasks = [...tasks];
     auxTasks.push({
       'nome': newTaskName,
       'descricao': newTaskDescription,
@@ -88,20 +90,20 @@ const Home: NextPage = () => {
     setNewTaskName('');
     setNewTaskDescription('');
     setAdd(false);
-  }
+  };
 
   const deleteTask = (index: number) => {
-    var auxTasks = [...tasks];
+    const auxTasks = [...tasks];
     auxTasks.splice(index, 1);
     setTasks(auxTasks);
-  }
+  };
 
   const deleteAllTasks = () => {
     setTasks([]);
-  }
+  };
 
   const updateTask = (index: number) => {
-    var auxTasks = [...tasks];
+    const auxTasks = [...tasks];
     if (newTemporaryTaskName.length != 0)
       auxTasks[index].nome = newTemporaryTaskName;
     if (newTemporaryTaskDescription.length != 0)
@@ -110,7 +112,7 @@ const Home: NextPage = () => {
     setNewTemporaryTaskName('');
     setNewTemporaryTaskDescription('');
     manageTask(index);
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -170,7 +172,7 @@ const Home: NextPage = () => {
                       <label htmlFor="nome">Nome da tarefa</label>
                       <input onChange={(e) => setNewTemporaryTaskName(e.target.value)} value={newTemporaryTaskName.length > 0 ? newTemporaryTaskName : task.nome} name='nome' type="text" />
                       <label htmlFor="descricao">Descrição da tarefa</label>
-                      <textarea onChange={(e) => setNewTemporaryTaskDescription(e.target.value)} value={newTemporaryTaskDescription.length > 0 ? newTemporaryTaskDescription :task.descricao} name="descricao" id="" rows={5}></textarea>
+                      <textarea onChange={(e) => setNewTemporaryTaskDescription(e.target.value)} value={newTemporaryTaskDescription.length > 0 ? newTemporaryTaskDescription : task.descricao} name="descricao" id="" rows={5}></textarea>
                     </div>
                     <div className={styles.containerButtons}>
                       <button onClick={() => manageTask(index)} className={styles.cancelButton}>Cancelar</button>
@@ -178,7 +180,7 @@ const Home: NextPage = () => {
                     </div>
                   </> : <></>
                 }
-              </div>
+              </div>;
             })
           }
 
@@ -212,7 +214,7 @@ const Home: NextPage = () => {
         Powered by Jonas Moreira, Lademir Junior e Luisa Ferreira
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
